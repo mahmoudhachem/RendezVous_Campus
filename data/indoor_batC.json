@@ -1,0 +1,3461 @@
+{
+ "meta": {
+  "version": "0.3",
+  "description": "Indoor graph of Bâtiment C (UFR STGI): ground, 1st and 2nd floor, traced from the evacuation plans.",
+  "coordinates": "Pixels on the 2nd-floor evacuation plan photo; the ground-floor plan is rotated to the same orientation.",
+  "scale_m_per_px": 0.031,
+  "georef": {
+   "anchor_px": [
+    287.0,
+    656.0
+   ],
+   "anchor_m": [
+    -0.5,
+    30.2
+   ],
+   "rotation_deg": 16,
+   "m_per_px": 0.031,
+   "origin": {
+    "lat": 47.4952,
+    "lng": 6.8046
+   }
+  },
+  "scale_source": "Corridor width 1.5 m measured on site = about 48 px on the plan.",
+  "todo": [
+   "1st floor offices C102, C106-C111 and repro C105 (optional)",
+   "Confirm C01 / C02 sides",
+   "Does the top staircase (B) reach the ground floor?",
+   "Is the east staircase (private wing) open to the public?",
+   "Which entrances are step-free?"
+  ]
+ },
+ "layers": [
+  {
+   "id": "C0",
+   "name": "Bât. C · RDC",
+   "floor": 0
+  },
+  {
+   "id": "C1",
+   "name": "Bât. C · 1er",
+   "floor": 1
+  },
+  {
+   "id": "C2",
+   "name": "Bât. C · 2e",
+   "floor": 2
+  }
+ ],
+ "nodes": [
+  {
+   "id": "C0_HALL",
+   "name": "Hall",
+   "layer": "C0",
+   "floor": 0,
+   "type": "hall",
+   "x": 181,
+   "y": 846,
+   "meetable": true,
+   "lat": 47.4954126,
+   "lng": 6.804573
+  },
+  {
+   "id": "C0_EXIT_HALL",
+   "name": "Main entrance (hall)",
+   "layer": "C0",
+   "floor": 0,
+   "type": "entrance",
+   "x": 150,
+   "y": 962,
+   "meetable": false,
+   "lat": 47.4953791,
+   "lng": 6.8045739,
+   "short": "Main door"
+  },
+  {
+   "id": "C0_EXIT_SIDE",
+   "name": "Side entrance (near Archives)",
+   "layer": "C0",
+   "floor": 0,
+   "type": "entrance",
+   "x": 331,
+   "y": 350,
+   "meetable": false,
+   "lat": 47.495557,
+   "lng": 6.8045761,
+   "short": "Side door"
+  },
+  {
+   "id": "C0_SPIRAL",
+   "name": "Spiral staircase (hall)",
+   "layer": "C0",
+   "floor": 0,
+   "type": "spiral",
+   "x": 293,
+   "y": 862,
+   "meetable": false,
+   "lat": 47.4954169,
+   "lng": 6.8046191
+  },
+  {
+   "id": "C0_J_STAIRS",
+   "name": "Foot of the main staircase",
+   "layer": "C0",
+   "floor": 0,
+   "type": "junction",
+   "x": 73,
+   "y": 770,
+   "meetable": false,
+   "lat": 47.4954246,
+   "lng": 6.8045217
+  },
+  {
+   "id": "C0_STAIR_A",
+   "name": "Main staircase",
+   "layer": "C0",
+   "floor": 0,
+   "type": "stairs",
+   "x": 21,
+   "y": 694,
+   "meetable": false,
+   "lat": 47.495441,
+   "lng": 6.8044925
+  },
+  {
+   "id": "C0_WC",
+   "name": "Toilets (incl. PMR)",
+   "layer": "C0",
+   "floor": 0,
+   "type": "wc",
+   "x": 149,
+   "y": 694,
+   "meetable": false,
+   "lat": 47.4954508,
+   "lng": 6.8045431
+  },
+  {
+   "id": "C0_J_CORE",
+   "name": "In front of the elevator",
+   "layer": "C0",
+   "floor": 0,
+   "type": "junction",
+   "x": 309,
+   "y": 622,
+   "meetable": false,
+   "lat": 47.4954824,
+   "lng": 6.8045982
+  },
+  {
+   "id": "C0_ELEVATOR",
+   "name": "Elevator",
+   "layer": "C0",
+   "floor": 0,
+   "type": "elevator",
+   "x": 235,
+   "y": 620,
+   "meetable": false,
+   "lat": 47.4954773,
+   "lng": 6.8045687
+  },
+  {
+   "id": "C0_J_EAST",
+   "name": "Corridor to the side entrance",
+   "layer": "C0",
+   "floor": 0,
+   "type": "junction",
+   "x": 317,
+   "y": 468,
+   "meetable": false,
+   "lat": 47.4955243,
+   "lng": 6.8045839
+  },
+  {
+   "id": "C0_J_OFFICES",
+   "name": "Corridor to the offices",
+   "layer": "C0",
+   "floor": 0,
+   "type": "junction",
+   "x": 189,
+   "y": 468,
+   "meetable": false,
+   "lat": 47.4955145,
+   "lng": 6.8045333
+  },
+  {
+   "id": "C0_REPRO",
+   "name": "Repro",
+   "layer": "C0",
+   "floor": 0,
+   "type": "service",
+   "x": 230,
+   "y": 548,
+   "meetable": false,
+   "lat": 47.4954962,
+   "lng": 6.8045586
+  },
+  {
+   "id": "C0_ARCHIVES",
+   "name": "Archives",
+   "layer": "C0",
+   "floor": 0,
+   "type": "service",
+   "x": 237,
+   "y": 410,
+   "meetable": false,
+   "lat": 47.4955337,
+   "lng": 6.8045457
+  },
+  {
+   "id": "C0_SECRETARIAT",
+   "name": "Secretariat",
+   "layer": "C0",
+   "floor": 0,
+   "type": "office",
+   "x": 93,
+   "y": 534,
+   "meetable": false,
+   "lat": 47.4954894,
+   "lng": 6.8045028
+  },
+  {
+   "id": "C0_DIRECTION",
+   "name": "Direction",
+   "layer": "C0",
+   "floor": 0,
+   "type": "office",
+   "x": 93,
+   "y": 410,
+   "meetable": false,
+   "lat": 47.4955227,
+   "lng": 6.8044887
+  },
+  {
+   "id": "C0_ROOM_L",
+   "name": "Lecture room C01",
+   "layer": "C0",
+   "floor": 0,
+   "type": "room",
+   "x": 485,
+   "y": 806,
+   "meetable": true,
+   "code": "C01",
+   "verify": [
+    "C01 = room on the hall side?"
+   ],
+   "emergency_exit": true,
+   "lat": 47.4954466,
+   "lng": 6.8046887
+  },
+  {
+   "id": "C0_ROOM_R",
+   "name": "Lecture room C02",
+   "layer": "C0",
+   "floor": 0,
+   "type": "room",
+   "x": 485,
+   "y": 508,
+   "meetable": true,
+   "code": "C02",
+   "verify": [
+    "C02 = room on the side-entrance side?"
+   ],
+   "emergency_exit": true,
+   "lat": 47.4955265,
+   "lng": 6.8046549
+  },
+  {
+   "id": "C1_J_TOP_W",
+   "name": "Top corridor × central corridor",
+   "layer": "C1",
+   "floor": 1,
+   "type": "junction",
+   "x": 310,
+   "y": 268,
+   "meetable": false,
+   "lat": 47.4955774,
+   "lng": 6.8045585
+  },
+  {
+   "id": "C1_J_TOP_MIDW",
+   "name": "Top corridor",
+   "layer": "C1",
+   "floor": 1,
+   "type": "junction",
+   "x": 540,
+   "y": 268,
+   "meetable": false,
+   "lat": 47.4955951,
+   "lng": 6.8046494
+  },
+  {
+   "id": "C1_J_TOP_MID",
+   "name": "Landing at the top staircase",
+   "layer": "C1",
+   "floor": 1,
+   "type": "junction",
+   "x": 720,
+   "y": 268,
+   "meetable": true,
+   "lat": 47.4956089,
+   "lng": 6.8047206
+  },
+  {
+   "id": "C1_J_TOP_E",
+   "name": "Top corridor, east end",
+   "layer": "C1",
+   "floor": 1,
+   "type": "junction",
+   "x": 885,
+   "y": 268,
+   "meetable": false,
+   "lat": 47.4956216,
+   "lng": 6.8047859
+  },
+  {
+   "id": "C1_J_MID",
+   "name": "Central corridor (north)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "junction",
+   "x": 310,
+   "y": 345,
+   "meetable": false,
+   "lat": 47.4955568,
+   "lng": 6.8045672
+  },
+  {
+   "id": "C1_J_LOW",
+   "name": "Central corridor (middle)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "junction",
+   "x": 310,
+   "y": 510,
+   "meetable": false,
+   "lat": 47.4955125,
+   "lng": 6.8045859
+  },
+  {
+   "id": "C1_J_CORE",
+   "name": "Central corridor, at the elevator",
+   "layer": "C1",
+   "floor": 1,
+   "type": "junction",
+   "x": 310,
+   "y": 640,
+   "meetable": true,
+   "lat": 47.4954777,
+   "lng": 6.8046006
+  },
+  {
+   "id": "C1_J_BOTTOM",
+   "name": "Central corridor (south)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "junction",
+   "x": 310,
+   "y": 725,
+   "meetable": false,
+   "lat": 47.4954549,
+   "lng": 6.8046103
+  },
+  {
+   "id": "C1_J_SW",
+   "name": "Corridor to the south-west stairs",
+   "layer": "C1",
+   "floor": 1,
+   "type": "junction",
+   "x": 150,
+   "y": 728,
+   "meetable": false,
+   "lat": 47.4954418,
+   "lng": 6.8045473
+  },
+  {
+   "id": "C1_STAIR_A",
+   "name": "South-west staircase",
+   "layer": "C1",
+   "floor": 1,
+   "type": "stairs",
+   "x": 55,
+   "y": 680,
+   "meetable": false,
+   "sas": true,
+   "lat": 47.4954474,
+   "lng": 6.8045043
+  },
+  {
+   "id": "C1_STAIR_B",
+   "name": "Top staircase",
+   "layer": "C1",
+   "floor": 1,
+   "type": "stairs",
+   "x": 725,
+   "y": 140,
+   "meetable": false,
+   "sas": true,
+   "lat": 47.4956436,
+   "lng": 6.8047081
+  },
+  {
+   "id": "C1_STAIR_E",
+   "name": "East staircase (private wing)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "stairs",
+   "x": 1015,
+   "y": 200,
+   "meetable": false,
+   "verify": [
+    "publicly accessible?"
+   ],
+   "lat": 47.4956498,
+   "lng": 6.8048296
+  },
+  {
+   "id": "C1_ELEVATOR",
+   "name": "Elevator",
+   "layer": "C1",
+   "floor": 1,
+   "type": "elevator",
+   "x": 235,
+   "y": 612,
+   "meetable": false,
+   "lat": 47.4954794,
+   "lng": 6.8045678
+  },
+  {
+   "id": "C1_WC",
+   "name": "Toilets (incl. PMR)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "wc",
+   "x": 165,
+   "y": 650,
+   "meetable": false,
+   "lat": 47.4954639,
+   "lng": 6.8045444
+  },
+  {
+   "id": "C1_SPIRAL",
+   "name": "Spiral staircase (top)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "spiral",
+   "x": 310,
+   "y": 830,
+   "meetable": false,
+   "lat": 47.4954268,
+   "lng": 6.8046222
+  },
+  {
+   "id": "C1_TD",
+   "name": "TD room (north-west)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "room",
+   "x": 145,
+   "y": 165,
+   "meetable": true,
+   "code": null,
+   "lat": 47.4955923,
+   "lng": 6.8044815
+  },
+  {
+   "id": "C1_BUREAU_1",
+   "name": "Office (north 1)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "office",
+   "x": 297,
+   "y": 150,
+   "meetable": false,
+   "code": null,
+   "lat": 47.495608,
+   "lng": 6.8045399
+  },
+  {
+   "id": "C1_BUREAU_2",
+   "name": "Office (north 2)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "office",
+   "x": 405,
+   "y": 150,
+   "meetable": false,
+   "code": null,
+   "lat": 47.4956163,
+   "lng": 6.8045826
+  },
+  {
+   "id": "C1_BUREAU_3",
+   "name": "Office (north 3)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "office",
+   "x": 520,
+   "y": 150,
+   "meetable": false,
+   "code": null,
+   "lat": 47.4956252,
+   "lng": 6.8046281
+  },
+  {
+   "id": "C1_BUREAU_4",
+   "name": "Office (by the stairs)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "office",
+   "x": 632,
+   "y": 105,
+   "meetable": false,
+   "code": null,
+   "lat": 47.4956458,
+   "lng": 6.8046673
+  },
+  {
+   "id": "C1_WC_N",
+   "name": "Toilets (north)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "wc",
+   "x": 632,
+   "y": 202,
+   "meetable": false,
+   "code": null,
+   "lat": 47.4956198,
+   "lng": 6.8046783
+  },
+  {
+   "id": "C1_INFO_N",
+   "name": "Computer room (east end)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "room",
+   "x": 895,
+   "y": 102,
+   "meetable": true,
+   "code": "C112",
+   "lat": 47.4956668,
+   "lng": 6.804771
+  },
+  {
+   "id": "C1_INFO_S",
+   "name": "Office (east)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "office",
+   "x": 895,
+   "y": 197,
+   "meetable": false,
+   "code": null,
+   "lat": 47.4956414,
+   "lng": 6.8047818
+  },
+  {
+   "id": "C1_REGIE",
+   "name": "Régie",
+   "layer": "C1",
+   "floor": 1,
+   "type": "office",
+   "x": 190,
+   "y": 345,
+   "meetable": false,
+   "code": null,
+   "lat": 47.4955475,
+   "lng": 6.8045197
+  },
+  {
+   "id": "C1_BUREAU_E",
+   "name": "Office (central)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "office",
+   "x": 385,
+   "y": 350,
+   "meetable": false,
+   "code": null,
+   "lat": 47.4955612,
+   "lng": 6.8045974
+  },
+  {
+   "id": "C1_TD1",
+   "name": "Lecture room (TD 1)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "room",
+   "x": 150,
+   "y": 500,
+   "meetable": true,
+   "code": "C104",
+   "lat": 47.4955029,
+   "lng": 6.8045215
+  },
+  {
+   "id": "C1_TP2",
+   "name": "Computer room (TP Info 2)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "room",
+   "x": 450,
+   "y": 510,
+   "meetable": true,
+   "code": "C103",
+   "lat": 47.4955233,
+   "lng": 6.8046413
+  },
+  {
+   "id": "C1_RESEAUX",
+   "name": "Network / server room",
+   "layer": "C1",
+   "floor": 1,
+   "type": "service",
+   "x": 390,
+   "y": 640,
+   "meetable": false,
+   "code": null,
+   "lat": 47.4954838,
+   "lng": 6.8046323,
+   "short": "Réseaux"
+  },
+  {
+   "id": "C1_BUREAU_ING",
+   "name": "Bureau ingénieur",
+   "layer": "C1",
+   "floor": 1,
+   "type": "office",
+   "x": 500,
+   "y": 640,
+   "meetable": false,
+   "code": null,
+   "lat": 47.4954923,
+   "lng": 6.8046758,
+   "short": "Bur. ing."
+  },
+  {
+   "id": "C1_TP1",
+   "name": "Computer room (TP Info 1)",
+   "layer": "C1",
+   "floor": 1,
+   "type": "room",
+   "x": 445,
+   "y": 790,
+   "meetable": true,
+   "code": "C101",
+   "lat": 47.4954479,
+   "lng": 6.804671
+  },
+  {
+   "id": "C2_J_TOP_W",
+   "name": "Top corridor × central corridor",
+   "layer": "C2",
+   "floor": 2,
+   "type": "junction",
+   "x": 310,
+   "y": 268,
+   "meetable": false,
+   "lat": 47.4955774,
+   "lng": 6.8045585
+  },
+  {
+   "id": "C2_J_TOP_MIDW",
+   "name": "Top corridor",
+   "layer": "C2",
+   "floor": 2,
+   "type": "junction",
+   "x": 540,
+   "y": 268,
+   "meetable": false,
+   "lat": 47.4955951,
+   "lng": 6.8046494
+  },
+  {
+   "id": "C2_J_TOP_MID",
+   "name": "Landing at the top staircase",
+   "layer": "C2",
+   "floor": 2,
+   "type": "junction",
+   "x": 720,
+   "y": 268,
+   "meetable": true,
+   "lat": 47.4956089,
+   "lng": 6.8047206
+  },
+  {
+   "id": "C2_J_TOP_E",
+   "name": "Top corridor, east end",
+   "layer": "C2",
+   "floor": 2,
+   "type": "junction",
+   "x": 885,
+   "y": 268,
+   "meetable": false,
+   "lat": 47.4956216,
+   "lng": 6.8047859
+  },
+  {
+   "id": "C2_J_MID",
+   "name": "Central corridor (north)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "junction",
+   "x": 310,
+   "y": 345,
+   "meetable": false,
+   "lat": 47.4955568,
+   "lng": 6.8045672
+  },
+  {
+   "id": "C2_J_LOW",
+   "name": "Central corridor (middle)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "junction",
+   "x": 310,
+   "y": 510,
+   "meetable": false,
+   "lat": 47.4955125,
+   "lng": 6.8045859
+  },
+  {
+   "id": "C2_J_CORE",
+   "name": "Central corridor, at the elevator",
+   "layer": "C2",
+   "floor": 2,
+   "type": "junction",
+   "x": 310,
+   "y": 640,
+   "meetable": true,
+   "lat": 47.4954777,
+   "lng": 6.8046006
+  },
+  {
+   "id": "C2_J_BOTTOM",
+   "name": "Central corridor (south)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "junction",
+   "x": 310,
+   "y": 725,
+   "meetable": false,
+   "lat": 47.4954549,
+   "lng": 6.8046103
+  },
+  {
+   "id": "C2_J_SW",
+   "name": "Corridor to the south-west stairs",
+   "layer": "C2",
+   "floor": 2,
+   "type": "junction",
+   "x": 150,
+   "y": 728,
+   "meetable": false,
+   "lat": 47.4954418,
+   "lng": 6.8045473
+  },
+  {
+   "id": "C2_STAIR_A",
+   "name": "South-west staircase",
+   "layer": "C2",
+   "floor": 2,
+   "type": "stairs",
+   "x": 55,
+   "y": 680,
+   "meetable": false,
+   "sas": true,
+   "lat": 47.4954474,
+   "lng": 6.8045043
+  },
+  {
+   "id": "C2_STAIR_B",
+   "name": "Top staircase",
+   "layer": "C2",
+   "floor": 2,
+   "type": "stairs",
+   "x": 725,
+   "y": 140,
+   "meetable": false,
+   "sas": true,
+   "lat": 47.4956436,
+   "lng": 6.8047081
+  },
+  {
+   "id": "C2_STAIR_E",
+   "name": "East staircase (private wing)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "stairs",
+   "x": 1015,
+   "y": 200,
+   "meetable": false,
+   "verify": [
+    "publicly accessible?"
+   ],
+   "lat": 47.4956498,
+   "lng": 6.8048296
+  },
+  {
+   "id": "C2_ELEVATOR",
+   "name": "Elevator",
+   "layer": "C2",
+   "floor": 2,
+   "type": "elevator",
+   "x": 235,
+   "y": 612,
+   "meetable": false,
+   "lat": 47.4954794,
+   "lng": 6.8045678
+  },
+  {
+   "id": "C2_WC",
+   "name": "Toilets (incl. PMR)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "wc",
+   "x": 165,
+   "y": 650,
+   "meetable": false,
+   "lat": 47.4954639,
+   "lng": 6.8045444
+  },
+  {
+   "id": "C2_TD_LANGUES",
+   "name": "Computer room (TD Multimédia Langues)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "room",
+   "x": 145,
+   "y": 165,
+   "meetable": true,
+   "code": "C208",
+   "lat": 47.4955923,
+   "lng": 6.8044815
+  },
+  {
+   "id": "C2_BUREAU_1",
+   "name": "Office",
+   "layer": "C2",
+   "floor": 2,
+   "type": "office",
+   "x": 290,
+   "y": 160,
+   "meetable": false,
+   "code": "C209",
+   "lat": 47.4956048,
+   "lng": 6.8045383
+  },
+  {
+   "id": "C2_BUREAU_2",
+   "name": "Office",
+   "layer": "C2",
+   "floor": 2,
+   "type": "office",
+   "x": 375,
+   "y": 160,
+   "meetable": false,
+   "code": "C210",
+   "lat": 47.4956113,
+   "lng": 6.8045719
+  },
+  {
+   "id": "C2_TP6",
+   "name": "Computer room (TP Info 6)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "room",
+   "x": 540,
+   "y": 160,
+   "meetable": true,
+   "code": "C211",
+   "lat": 47.495624,
+   "lng": 6.8046372
+  },
+  {
+   "id": "C2_TP7",
+   "name": "Computer room (TP Info 7)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "room",
+   "x": 890,
+   "y": 165,
+   "meetable": true,
+   "code": "C212",
+   "lat": 47.4956496,
+   "lng": 6.8047762
+  },
+  {
+   "id": "C2_BUREAU_3",
+   "name": "Office Multimédia & Informatique",
+   "layer": "C2",
+   "floor": 2,
+   "type": "office",
+   "x": 190,
+   "y": 345,
+   "meetable": false,
+   "code": "C207",
+   "lat": 47.4955475,
+   "lng": 6.8045197
+  },
+  {
+   "id": "C2_VIDEO",
+   "name": "Bureau association",
+   "layer": "C2",
+   "floor": 2,
+   "type": "office",
+   "x": 385,
+   "y": 350,
+   "meetable": false,
+   "code": "C206",
+   "lat": 47.4955612,
+   "lng": 6.8045974
+  },
+  {
+   "id": "C2_TD2",
+   "name": "Lecture room (TD 2)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "room",
+   "x": 150,
+   "y": 500,
+   "meetable": true,
+   "code": "C205",
+   "lat": 47.4955029,
+   "lng": 6.8045215
+  },
+  {
+   "id": "C2_TP4",
+   "name": "Computer room (TP Info 4)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "room",
+   "x": 450,
+   "y": 510,
+   "meetable": true,
+   "code": "C204",
+   "lat": 47.4955233,
+   "lng": 6.8046413
+  },
+  {
+   "id": "C2_REUNION",
+   "name": "Video-conference room (Salle de réunion)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "room",
+   "x": 455,
+   "y": 640,
+   "meetable": true,
+   "code": "C201",
+   "lat": 47.4954888,
+   "lng": 6.804658
+  },
+  {
+   "id": "C2_TP3",
+   "name": "Computer room (TP Info 3)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "room",
+   "x": 445,
+   "y": 790,
+   "meetable": true,
+   "code": "C203",
+   "lat": 47.4954479,
+   "lng": 6.804671
+  },
+  {
+   "id": "C2_TP5",
+   "name": "Computer room (TP Info 5)",
+   "layer": "C2",
+   "floor": 2,
+   "type": "room",
+   "x": 190,
+   "y": 815,
+   "meetable": true,
+   "code": "C202",
+   "lat": 47.4954216,
+   "lng": 6.804573
+  }
+ ],
+ "edges": [
+  {
+   "from": "C0_EXIT_HALL",
+   "to": "C0_HALL",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Walk into the hall.",
+    "back": "Cross the hall to the main entrance."
+   }
+  },
+  {
+   "from": "C0_HALL",
+   "to": "C0_SPIRAL",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Walk to the spiral staircase in the hall.",
+    "back": "Step off the spiral staircase into the hall."
+   }
+  },
+  {
+   "from": "C0_HALL",
+   "to": "C0_J_STAIRS",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Cross the hall to the main staircase.",
+    "back": "Walk from the staircase into the hall."
+   }
+  },
+  {
+   "from": "C0_J_STAIRS",
+   "to": "C0_STAIR_A",
+   "kind": "door",
+   "instr": {
+    "fwd": "The main staircase is in front of you.",
+    "back": "Leave the staircase."
+   }
+  },
+  {
+   "from": "C0_HALL",
+   "to": "C0_WC",
+   "kind": "door",
+   "instr": {
+    "fwd": "The toilets are off the hall.",
+    "back": "Leave the toilets into the hall."
+   }
+  },
+  {
+   "from": "C0_HALL",
+   "to": "C0_J_CORE",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Cross the hall towards the elevator.",
+    "back": "Walk back into the hall."
+   }
+  },
+  {
+   "from": "C0_HALL",
+   "to": "C0_ROOM_L",
+   "kind": "door",
+   "instr": {
+    "fwd": "Lecture room C01 opens off the hall.",
+    "back": "Leave C01 into the hall."
+   }
+  },
+  {
+   "from": "C0_J_CORE",
+   "to": "C0_ELEVATOR",
+   "kind": "door",
+   "instr": {
+    "fwd": "The elevator is in front of you.",
+    "back": "Step out of the elevator."
+   }
+  },
+  {
+   "from": "C0_J_CORE",
+   "to": "C0_ROOM_R",
+   "kind": "door",
+   "instr": {
+    "fwd": "Lecture room C02 is in front of you.",
+    "back": "Leave C02 towards the elevator."
+   }
+  },
+  {
+   "from": "C0_J_CORE",
+   "to": "C0_J_EAST",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Walk past the elevator towards the offices.",
+    "back": "Walk back towards the elevator."
+   }
+  },
+  {
+   "from": "C0_J_EAST",
+   "to": "C0_REPRO",
+   "kind": "door",
+   "instr": {
+    "fwd": "Repro is on your left.",
+    "back": "Leave Repro."
+   }
+  },
+  {
+   "from": "C0_J_EAST",
+   "to": "C0_J_OFFICES",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Turn into the corridor between Repro and Archives.",
+    "back": "Walk back to the main corridor."
+   }
+  },
+  {
+   "from": "C0_J_OFFICES",
+   "to": "C0_ARCHIVES",
+   "kind": "door",
+   "instr": {
+    "fwd": "Archives is on your right.",
+    "back": "Leave Archives."
+   }
+  },
+  {
+   "from": "C0_J_OFFICES",
+   "to": "C0_SECRETARIAT",
+   "kind": "door",
+   "instr": {
+    "fwd": "The secretariat is on your left.",
+    "back": "Leave the secretariat."
+   }
+  },
+  {
+   "from": "C0_J_OFFICES",
+   "to": "C0_DIRECTION",
+   "kind": "door",
+   "instr": {
+    "fwd": "Direction is on your right.",
+    "back": "Leave Direction."
+   }
+  },
+  {
+   "from": "C0_J_EAST",
+   "to": "C0_EXIT_SIDE",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Leave through the side entrance.",
+    "back": "Enter through the side entrance."
+   }
+  },
+  {
+   "from": "C1_J_TOP_W",
+   "to": "C1_J_TOP_MIDW",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Turn into the top corridor.",
+    "back": "Walk along the top corridor to the central corridor."
+   }
+  },
+  {
+   "from": "C1_J_TOP_MIDW",
+   "to": "C1_J_TOP_MID",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue along the top corridor.",
+    "back": "Continue along the top corridor."
+   }
+  },
+  {
+   "from": "C1_J_TOP_MID",
+   "to": "C1_STAIR_B",
+   "kind": "door",
+   "instr": {
+    "fwd": "The staircase is on your left.",
+    "back": "Leave the stairwell into the top corridor."
+   }
+  },
+  {
+   "from": "C1_J_TOP_MID",
+   "to": "C1_J_TOP_E",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue towards the east end of the corridor.",
+    "back": "Walk back along the top corridor."
+   }
+  },
+  {
+   "from": "C1_J_TOP_E",
+   "to": "C1_STAIR_E",
+   "kind": "door",
+   "instr": {
+    "fwd": "The east staircase is at the end.",
+    "back": "Leave the stairwell."
+   },
+   "access": {
+    "walk": true,
+    "wheelchair": false,
+    "bike": true
+   }
+  },
+  {
+   "from": "C1_J_TOP_W",
+   "to": "C1_J_MID",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Turn into the central corridor.",
+    "back": "Walk to the end of the central corridor."
+   }
+  },
+  {
+   "from": "C1_J_MID",
+   "to": "C1_J_LOW",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue down the central corridor.",
+    "back": "Continue up the central corridor."
+   }
+  },
+  {
+   "from": "C1_J_LOW",
+   "to": "C1_J_CORE",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue down the central corridor to the elevator.",
+    "back": "Walk up the central corridor."
+   }
+  },
+  {
+   "from": "C1_J_CORE",
+   "to": "C1_J_BOTTOM",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue to the end of the central corridor.",
+    "back": "Walk up the central corridor to the elevator."
+   }
+  },
+  {
+   "from": "C1_J_BOTTOM",
+   "to": "C1_J_SW",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Turn right towards the south-west stairs.",
+    "back": "Walk back to the central corridor."
+   }
+  },
+  {
+   "from": "C1_J_SW",
+   "to": "C1_STAIR_A",
+   "kind": "door",
+   "instr": {
+    "fwd": "The staircase is at the end.",
+    "back": "Leave the stairwell."
+   }
+  },
+  {
+   "from": "C1_J_CORE",
+   "to": "C1_ELEVATOR",
+   "kind": "door",
+   "instr": {
+    "fwd": "The elevator is next to the toilets.",
+    "back": "Step out of the elevator."
+   }
+  },
+  {
+   "from": "C1_J_CORE",
+   "to": "C1_WC",
+   "kind": "door",
+   "instr": {
+    "fwd": "The toilets are next to the elevator.",
+    "back": "Leave the toilets."
+   }
+  },
+  {
+   "from": "C1_J_BOTTOM",
+   "to": "C1_SPIRAL",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "The spiral staircase is at the end of the corridor.",
+    "back": "Step off the spiral staircase into the corridor."
+   }
+  },
+  {
+   "from": "C1_J_TOP_W",
+   "to": "C1_TD",
+   "kind": "door",
+   "instr": {
+    "fwd": "The TD room is on your left at the corner.",
+    "back": "Leave TD room (north-west)."
+   }
+  },
+  {
+   "from": "C1_J_TOP_W",
+   "to": "C1_BUREAU_1",
+   "kind": "door",
+   "instr": {
+    "fwd": "Office (north 1) is here.",
+    "back": "Leave Office (north 1)."
+   }
+  },
+  {
+   "from": "C1_J_TOP_W",
+   "to": "C1_BUREAU_2",
+   "kind": "door",
+   "instr": {
+    "fwd": "Office (north 2) is here.",
+    "back": "Leave Office (north 2)."
+   }
+  },
+  {
+   "from": "C1_J_TOP_MIDW",
+   "to": "C1_BUREAU_3",
+   "kind": "door",
+   "instr": {
+    "fwd": "Office (north 3) is here.",
+    "back": "Leave Office (north 3)."
+   }
+  },
+  {
+   "from": "C1_J_TOP_MIDW",
+   "to": "C1_BUREAU_4",
+   "kind": "door",
+   "instr": {
+    "fwd": "Office (by the stairs) is here.",
+    "back": "Leave Office (by the stairs)."
+   }
+  },
+  {
+   "from": "C1_J_TOP_MIDW",
+   "to": "C1_WC_N",
+   "kind": "door",
+   "instr": {
+    "fwd": "Toilets (north) is here.",
+    "back": "Leave Toilets (north)."
+   }
+  },
+  {
+   "from": "C1_J_TOP_E",
+   "to": "C1_INFO_N",
+   "kind": "door",
+   "instr": {
+    "fwd": "Go straight to the end of the corridor; C112 is the room furthest on your left.",
+    "back": "Leave Computer room (east end)."
+   }
+  },
+  {
+   "from": "C1_J_TOP_E",
+   "to": "C1_INFO_S",
+   "kind": "door",
+   "instr": {
+    "fwd": "The office is on your left.",
+    "back": "Leave Office (east)."
+   }
+  },
+  {
+   "from": "C1_J_MID",
+   "to": "C1_REGIE",
+   "kind": "door",
+   "instr": {
+    "fwd": "Régie is here.",
+    "back": "Leave Régie."
+   }
+  },
+  {
+   "from": "C1_J_MID",
+   "to": "C1_BUREAU_E",
+   "kind": "door",
+   "instr": {
+    "fwd": "Office (central) is here.",
+    "back": "Leave Office (central)."
+   }
+  },
+  {
+   "from": "C1_J_LOW",
+   "to": "C1_TD1",
+   "kind": "door",
+   "instr": {
+    "fwd": "C104 is on your right.",
+    "back": "Leave Lecture room (TD 1)."
+   }
+  },
+  {
+   "from": "C1_J_LOW",
+   "to": "C1_TP2",
+   "kind": "door",
+   "instr": {
+    "fwd": "C103 is on your left.",
+    "back": "Leave Computer room (TP Info 2)."
+   }
+  },
+  {
+   "from": "C1_J_CORE",
+   "to": "C1_RESEAUX",
+   "kind": "door",
+   "instr": {
+    "fwd": "Network / server room is here.",
+    "back": "Leave Network / server room."
+   }
+  },
+  {
+   "from": "C1_J_CORE",
+   "to": "C1_BUREAU_ING",
+   "kind": "door",
+   "instr": {
+    "fwd": "Bureau ingénieur is here.",
+    "back": "Leave Bureau ingénieur."
+   }
+  },
+  {
+   "from": "C1_J_BOTTOM",
+   "to": "C1_TP1",
+   "kind": "door",
+   "instr": {
+    "fwd": "C101 is on your left.",
+    "back": "Leave Computer room (TP Info 1)."
+   }
+  },
+  {
+   "from": "C2_J_TOP_W",
+   "to": "C2_J_TOP_MIDW",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Turn into the top corridor.",
+    "back": "Walk along the top corridor to the central corridor."
+   }
+  },
+  {
+   "from": "C2_J_TOP_MIDW",
+   "to": "C2_J_TOP_MID",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue along the top corridor.",
+    "back": "Continue along the top corridor."
+   }
+  },
+  {
+   "from": "C2_J_TOP_MID",
+   "to": "C2_STAIR_B",
+   "kind": "door",
+   "instr": {
+    "fwd": "The staircase is on your left.",
+    "back": "Leave the stairwell into the top corridor."
+   }
+  },
+  {
+   "from": "C2_J_TOP_MID",
+   "to": "C2_J_TOP_E",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue towards the east end of the corridor.",
+    "back": "Walk back along the top corridor."
+   }
+  },
+  {
+   "from": "C2_J_TOP_E",
+   "to": "C2_STAIR_E",
+   "kind": "door",
+   "instr": {
+    "fwd": "The east staircase is at the end.",
+    "back": "Leave the stairwell."
+   },
+   "access": {
+    "walk": true,
+    "wheelchair": false,
+    "bike": true
+   }
+  },
+  {
+   "from": "C2_J_TOP_W",
+   "to": "C2_J_MID",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Turn into the central corridor.",
+    "back": "Walk to the end of the central corridor."
+   }
+  },
+  {
+   "from": "C2_J_MID",
+   "to": "C2_J_LOW",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue down the central corridor.",
+    "back": "Continue up the central corridor."
+   }
+  },
+  {
+   "from": "C2_J_LOW",
+   "to": "C2_J_CORE",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue down the central corridor to the elevator.",
+    "back": "Walk up the central corridor."
+   }
+  },
+  {
+   "from": "C2_J_CORE",
+   "to": "C2_J_BOTTOM",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Continue to the end of the central corridor.",
+    "back": "Walk up the central corridor to the elevator."
+   }
+  },
+  {
+   "from": "C2_J_BOTTOM",
+   "to": "C2_J_SW",
+   "kind": "corridor",
+   "instr": {
+    "fwd": "Turn right towards the south-west stairs.",
+    "back": "Walk back to the central corridor."
+   }
+  },
+  {
+   "from": "C2_J_SW",
+   "to": "C2_STAIR_A",
+   "kind": "door",
+   "instr": {
+    "fwd": "The staircase is at the end.",
+    "back": "Leave the stairwell."
+   }
+  },
+  {
+   "from": "C2_J_CORE",
+   "to": "C2_ELEVATOR",
+   "kind": "door",
+   "instr": {
+    "fwd": "The elevator is next to the toilets.",
+    "back": "Step out of the elevator."
+   }
+  },
+  {
+   "from": "C2_J_CORE",
+   "to": "C2_WC",
+   "kind": "door",
+   "instr": {
+    "fwd": "The toilets are next to the elevator.",
+    "back": "Leave the toilets."
+   }
+  },
+  {
+   "from": "C2_J_TOP_W",
+   "to": "C2_TD_LANGUES",
+   "kind": "door",
+   "instr": {
+    "fwd": "C208 is at the corner.",
+    "back": "Leave Computer room (TD Multimédia Langues)."
+   }
+  },
+  {
+   "from": "C2_J_TOP_W",
+   "to": "C2_BUREAU_1",
+   "kind": "door",
+   "instr": {
+    "fwd": "Office is here.",
+    "back": "Leave Office."
+   }
+  },
+  {
+   "from": "C2_J_TOP_W",
+   "to": "C2_BUREAU_2",
+   "kind": "door",
+   "instr": {
+    "fwd": "Office is here.",
+    "back": "Leave Office."
+   }
+  },
+  {
+   "from": "C2_J_TOP_MIDW",
+   "to": "C2_TP6",
+   "kind": "door",
+   "instr": {
+    "fwd": "C211 is on your left.",
+    "back": "Leave Computer room (TP Info 6)."
+   }
+  },
+  {
+   "from": "C2_J_TOP_E",
+   "to": "C2_TP7",
+   "kind": "door",
+   "instr": {
+    "fwd": "C212 is on your left.",
+    "back": "Leave Computer room (TP Info 7)."
+   }
+  },
+  {
+   "from": "C2_J_MID",
+   "to": "C2_BUREAU_3",
+   "kind": "door",
+   "instr": {
+    "fwd": "Office Multimédia & Informatique is here.",
+    "back": "Leave Office Multimédia & Informatique."
+   }
+  },
+  {
+   "from": "C2_J_MID",
+   "to": "C2_VIDEO",
+   "kind": "door",
+   "instr": {
+    "fwd": "Bureau association is here.",
+    "back": "Leave Bureau association."
+   }
+  },
+  {
+   "from": "C2_J_LOW",
+   "to": "C2_TD2",
+   "kind": "door",
+   "instr": {
+    "fwd": "C205 is on your right.",
+    "back": "Leave Lecture room (TD 2)."
+   }
+  },
+  {
+   "from": "C2_J_LOW",
+   "to": "C2_TP4",
+   "kind": "door",
+   "instr": {
+    "fwd": "C204 is on your left.",
+    "back": "Leave Computer room (TP Info 4)."
+   }
+  },
+  {
+   "from": "C2_J_CORE",
+   "to": "C2_REUNION",
+   "kind": "door",
+   "instr": {
+    "fwd": "C201 is on your left.",
+    "back": "Leave Video-conference room (Salle de réunion)."
+   }
+  },
+  {
+   "from": "C2_J_BOTTOM",
+   "to": "C2_TP3",
+   "kind": "door",
+   "instr": {
+    "fwd": "C203 is on your left.",
+    "back": "Leave Computer room (TP Info 3)."
+   }
+  },
+  {
+   "from": "C2_J_SW",
+   "to": "C2_TP5",
+   "kind": "door",
+   "instr": {
+    "fwd": "C202 is on your left.",
+    "back": "Leave Computer room (TP Info 5)."
+   }
+  },
+  {
+   "from": "C0_STAIR_A",
+   "to": "C1_STAIR_A",
+   "kind": "stairs",
+   "floors": 1
+  },
+  {
+   "from": "C1_STAIR_A",
+   "to": "C2_STAIR_A",
+   "kind": "stairs",
+   "floors": 1
+  },
+  {
+   "from": "C0_SPIRAL",
+   "to": "C1_SPIRAL",
+   "kind": "spiral",
+   "floors": 1
+  },
+  {
+   "from": "C0_ELEVATOR",
+   "to": "C1_ELEVATOR",
+   "kind": "elevator",
+   "floors": 1
+  },
+  {
+   "from": "C1_ELEVATOR",
+   "to": "C2_ELEVATOR",
+   "kind": "elevator",
+   "floors": 1
+  },
+  {
+   "from": "C1_STAIR_B",
+   "to": "C2_STAIR_B",
+   "kind": "stairs",
+   "floors": 1
+  },
+  {
+   "from": "C1_STAIR_E",
+   "to": "C2_STAIR_E",
+   "kind": "stairs",
+   "floors": 1
+  }
+ ],
+ "areas": [
+  {
+   "layer": "C0",
+   "kind": "corridor",
+   "rect": [
+    17,
+    802,
+    349,
+    954
+   ],
+   "poly": [
+    [
+     47.4954117,
+     6.8045031
+    ],
+    [
+     47.4954373,
+     6.8046344
+    ],
+    [
+     47.4953965,
+     6.8046517
+    ],
+    [
+     47.495371,
+     6.8045204
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "corridor",
+   "rect": [
+    89,
+    738,
+    349,
+    802
+   ],
+   "poly": [
+    [
+     47.4954344,
+     6.8045244
+    ],
+    [
+     47.4954544,
+     6.8046272
+    ],
+    [
+     47.4954373,
+     6.8046344
+    ],
+    [
+     47.4954173,
+     6.8045316
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "corridor",
+   "rect": [
+    269,
+    582,
+    349,
+    738
+   ],
+   "poly": [
+    [
+     47.4954901,
+     6.8045779
+    ],
+    [
+     47.4954962,
+     6.8046095
+    ],
+    [
+     47.4954544,
+     6.8046272
+    ],
+    [
+     47.4954483,
+     6.8045955
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "corridor",
+   "rect": [
+    297,
+    358,
+    349,
+    582
+   ],
+   "poly": [
+    [
+     47.4955523,
+     6.8045635
+    ],
+    [
+     47.4955563,
+     6.8045841
+    ],
+    [
+     47.4954962,
+     6.8046095
+    ],
+    [
+     47.4954922,
+     6.8045889
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "corridor",
+   "rect": [
+    181,
+    454,
+    297,
+    482
+   ],
+   "poly": [
+    [
+     47.4955176,
+     6.8045285
+    ],
+    [
+     47.4955265,
+     6.8045744
+    ],
+    [
+     47.495519,
+     6.8045776
+    ],
+    [
+     47.4955101,
+     6.8045317
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "stairs",
+   "rect": [
+    -47,
+    582,
+    89,
+    802
+   ],
+   "node": "C0_STAIR_A",
+   "label": "Stairs",
+   "poly": [
+    [
+     47.4954658,
+     6.8044529
+    ],
+    [
+     47.4954762,
+     6.8045067
+    ],
+    [
+     47.4954173,
+     6.8045316
+    ],
+    [
+     47.4954068,
+     6.8044778
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "wc",
+   "rect": [
+    89,
+    590,
+    201,
+    738
+   ],
+   "node": "C0_WC",
+   "label": "WC",
+   "poly": [
+    [
+     47.4954741,
+     6.8045076
+    ],
+    [
+     47.4954827,
+     6.8045519
+    ],
+    [
+     47.495443,
+     6.8045687
+    ],
+    [
+     47.4954344,
+     6.8045244
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "service",
+   "rect": [
+    201,
+    650,
+    269,
+    738
+   ],
+   "poly": [
+    [
+     47.4954666,
+     6.8045587
+    ],
+    [
+     47.4954719,
+     6.8045856
+    ],
+    [
+     47.4954483,
+     6.8045955
+    ],
+    [
+     47.495443,
+     6.8045687
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "elevator",
+   "rect": [
+    201,
+    590,
+    269,
+    650
+   ],
+   "node": "C0_ELEVATOR",
+   "label": "Lift",
+   "poly": [
+    [
+     47.4954827,
+     6.8045519
+    ],
+    [
+     47.4954879,
+     6.8045788
+    ],
+    [
+     47.4954719,
+     6.8045856
+    ],
+    [
+     47.4954666,
+     6.8045587
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "room",
+   "rect": [
+    17,
+    482,
+    181,
+    582
+   ],
+   "node": "C0_SECRETARIAT",
+   "poly": [
+    [
+     47.4954975,
+     6.8044669
+    ],
+    [
+     47.4955101,
+     6.8045317
+    ],
+    [
+     47.4954833,
+     6.8045431
+    ],
+    [
+     47.4954707,
+     6.8044782
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "room",
+   "rect": [
+    17,
+    358,
+    181,
+    482
+   ],
+   "node": "C0_DIRECTION",
+   "poly": [
+    [
+     47.4955308,
+     6.8044528
+    ],
+    [
+     47.4955434,
+     6.8045177
+    ],
+    [
+     47.4955101,
+     6.8045317
+    ],
+    [
+     47.4954975,
+     6.8044669
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "room",
+   "rect": [
+    181,
+    482,
+    297,
+    582
+   ],
+   "node": "C0_REPRO",
+   "poly": [
+    [
+     47.4955101,
+     6.8045317
+    ],
+    [
+     47.495519,
+     6.8045776
+    ],
+    [
+     47.4954922,
+     6.8045889
+    ],
+    [
+     47.4954833,
+     6.8045431
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "room",
+   "rect": [
+    181,
+    358,
+    297,
+    454
+   ],
+   "node": "C0_ARCHIVES",
+   "poly": [
+    [
+     47.4955434,
+     6.8045177
+    ],
+    [
+     47.4955523,
+     6.8045635
+    ],
+    [
+     47.4955265,
+     6.8045744
+    ],
+    [
+     47.4955176,
+     6.8045285
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "room",
+   "rect": [
+    349,
+    658,
+    621,
+    954
+   ],
+   "node": "C0_ROOM_L",
+   "poly": [
+    [
+     47.4954759,
+     6.8046181
+    ],
+    [
+     47.4954968,
+     6.8047257
+    ],
+    [
+     47.4954174,
+     6.8047592
+    ],
+    [
+     47.4953965,
+     6.8046517
+    ]
+   ]
+  },
+  {
+   "layer": "C0",
+   "kind": "room",
+   "rect": [
+    349,
+    358,
+    621,
+    658
+   ],
+   "node": "C0_ROOM_R",
+   "poly": [
+    [
+     47.4955563,
+     6.8045841
+    ],
+    [
+     47.4955772,
+     6.8046917
+    ],
+    [
+     47.4954968,
+     6.8047257
+    ],
+    [
+     47.4954759,
+     6.8046181
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "corridor",
+   "rect": [
+    250,
+    245,
+    1000,
+    290
+   ],
+   "poly": [
+    [
+     47.4955789,
+     6.8045321
+    ],
+    [
+     47.4956366,
+     6.8048287
+    ],
+    [
+     47.4956245,
+     6.8048338
+    ],
+    [
+     47.4955669,
+     6.8045372
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "corridor",
+   "rect": [
+    285,
+    290,
+    335,
+    750
+   ],
+   "poly": [
+    [
+     47.4955696,
+     6.8045511
+    ],
+    [
+     47.4955734,
+     6.8045708
+    ],
+    [
+     47.4954501,
+     6.804623
+    ],
+    [
+     47.4954463,
+     6.8046032
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "corridor",
+   "rect": [
+    0,
+    700,
+    335,
+    750
+   ],
+   "poly": [
+    [
+     47.4954378,
+     6.8044849
+    ],
+    [
+     47.4954635,
+     6.8046173
+    ],
+    [
+     47.4954501,
+     6.804623
+    ],
+    [
+     47.4954244,
+     6.8044905
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "stairs",
+   "rect": [
+    690,
+    75,
+    790,
+    245
+   ],
+   "node": "C1_STAIR_B",
+   "label": "Stairs",
+   "poly": [
+    [
+     47.4956583,
+     6.8046869
+    ],
+    [
+     47.495666,
+     6.8047264
+    ],
+    [
+     47.4956204,
+     6.8047457
+    ],
+    [
+     47.4956128,
+     6.8047061
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "stairs",
+   "rect": [
+    0,
+    595,
+    105,
+    700
+   ],
+   "node": "C1_STAIR_A",
+   "label": "Stairs",
+   "poly": [
+    [
+     47.4954659,
+     6.8044729
+    ],
+    [
+     47.495474,
+     6.8045145
+    ],
+    [
+     47.4954458,
+     6.8045264
+    ],
+    [
+     47.4954378,
+     6.8044849
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "wc",
+   "rect": [
+    105,
+    590,
+    200,
+    700
+   ],
+   "node": "C1_WC",
+   "label": "WC",
+   "poly": [
+    [
+     47.4954753,
+     6.8045139
+    ],
+    [
+     47.4954826,
+     6.8045515
+    ],
+    [
+     47.4954532,
+     6.8045639
+    ],
+    [
+     47.4954458,
+     6.8045264
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "elevator",
+   "rect": [
+    205,
+    595,
+    265,
+    645
+   ],
+   "node": "C1_ELEVATOR",
+   "label": "Lift",
+   "poly": [
+    [
+     47.4954817,
+     6.804554
+    ],
+    [
+     47.4954863,
+     6.8045777
+    ],
+    [
+     47.4954729,
+     6.8045834
+    ],
+    [
+     47.4954683,
+     6.8045597
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "service",
+   "rect": [
+    200,
+    645,
+    285,
+    700
+   ],
+   "poly": [
+    [
+     47.4954679,
+     6.8045577
+    ],
+    [
+     47.4954744,
+     6.8045913
+    ],
+    [
+     47.4954597,
+     6.8045976
+    ],
+    [
+     47.4954532,
+     6.8045639
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "private",
+   "rect": [
+    1000,
+    55,
+    1190,
+    290
+   ],
+   "node": "C1_STAIR_E",
+   "label": "Private",
+   "poly": [
+    [
+     47.4956875,
+     6.8048072
+    ],
+    [
+     47.4957021,
+     6.8048823
+    ],
+    [
+     47.4956391,
+     6.804909
+    ],
+    [
+     47.4956245,
+     6.8048338
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    40,
+    50,
+    250,
+    285
+   ],
+   "node": "C1_TD",
+   "poly": [
+    [
+     47.4956151,
+     6.804427
+    ],
+    [
+     47.4956312,
+     6.80451
+    ],
+    [
+     47.4955682,
+     6.8045367
+    ],
+    [
+     47.4955521,
+     6.8044536
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    250,
+    50,
+    345,
+    245
+   ],
+   "node": "C1_BUREAU_1",
+   "poly": [
+    [
+     47.4956312,
+     6.80451
+    ],
+    [
+     47.4956385,
+     6.8045476
+    ],
+    [
+     47.4955862,
+     6.8045697
+    ],
+    [
+     47.4955789,
+     6.8045321
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    345,
+    50,
+    465,
+    245
+   ],
+   "node": "C1_BUREAU_2",
+   "poly": [
+    [
+     47.4956385,
+     6.8045476
+    ],
+    [
+     47.4956477,
+     6.804595
+    ],
+    [
+     47.4955955,
+     6.8046172
+    ],
+    [
+     47.4955862,
+     6.8045697
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    465,
+    50,
+    575,
+    245
+   ],
+   "node": "C1_BUREAU_3",
+   "poly": [
+    [
+     47.4956477,
+     6.804595
+    ],
+    [
+     47.4956562,
+     6.8046385
+    ],
+    [
+     47.4956039,
+     6.8046607
+    ],
+    [
+     47.4955955,
+     6.8046172
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    575,
+    50,
+    690,
+    160
+   ],
+   "node": "C1_BUREAU_4",
+   "poly": [
+    [
+     47.4956562,
+     6.8046385
+    ],
+    [
+     47.495665,
+     6.804684
+    ],
+    [
+     47.4956355,
+     6.8046965
+    ],
+    [
+     47.4956267,
+     6.804651
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "wc",
+   "rect": [
+    575,
+    160,
+    690,
+    245
+   ],
+   "node": "C1_WC_N",
+   "label": "WC",
+   "poly": [
+    [
+     47.4956267,
+     6.804651
+    ],
+    [
+     47.4956355,
+     6.8046965
+    ],
+    [
+     47.4956128,
+     6.8047061
+    ],
+    [
+     47.4956039,
+     6.8046607
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    790,
+    55,
+    1000,
+    150
+   ],
+   "node": "C1_INFO_N",
+   "poly": [
+    [
+     47.4956714,
+     6.8047241
+    ],
+    [
+     47.4956875,
+     6.8048072
+    ],
+    [
+     47.495662,
+     6.804818
+    ],
+    [
+     47.4956459,
+     6.8047349
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    790,
+    150,
+    1000,
+    245
+   ],
+   "node": "C1_INFO_S",
+   "poly": [
+    [
+     47.4956459,
+     6.8047349
+    ],
+    [
+     47.495662,
+     6.804818
+    ],
+    [
+     47.4956366,
+     6.8048287
+    ],
+    [
+     47.4956204,
+     6.8047457
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    115,
+    290,
+    285,
+    395
+   ],
+   "node": "C1_REGIE",
+   "poly": [
+    [
+     47.4955565,
+     6.8044838
+    ],
+    [
+     47.4955696,
+     6.8045511
+    ],
+    [
+     47.4955414,
+     6.804563
+    ],
+    [
+     47.4955284,
+     6.8044957
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    335,
+    290,
+    435,
+    395
+   ],
+   "node": "C1_BUREAU_E",
+   "poly": [
+    [
+     47.4955734,
+     6.8045708
+    ],
+    [
+     47.4955811,
+     6.8046104
+    ],
+    [
+     47.495553,
+     6.8046223
+    ],
+    [
+     47.4955453,
+     6.8045827
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    45,
+    395,
+    285,
+    590
+   ],
+   "node": "C1_TD1",
+   "poly": [
+    [
+     47.495523,
+     6.8044681
+    ],
+    [
+     47.4955414,
+     6.804563
+    ],
+    [
+     47.4954892,
+     6.8045851
+    ],
+    [
+     47.4954707,
+     6.8044902
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    335,
+    395,
+    565,
+    585
+   ],
+   "node": "C1_TP2",
+   "poly": [
+    [
+     47.4955453,
+     6.8045827
+    ],
+    [
+     47.495563,
+     6.8046737
+    ],
+    [
+     47.495512,
+     6.8046953
+    ],
+    [
+     47.4954943,
+     6.8046043
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    335,
+    585,
+    445,
+    700
+   ],
+   "node": "C1_RESEAUX",
+   "poly": [
+    [
+     47.4954943,
+     6.8046043
+    ],
+    [
+     47.4955028,
+     6.8046478
+    ],
+    [
+     47.495472,
+     6.8046608
+    ],
+    [
+     47.4954635,
+     6.8046173
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    445,
+    585,
+    555,
+    700
+   ],
+   "node": "C1_BUREAU_ING",
+   "poly": [
+    [
+     47.4955028,
+     6.8046478
+    ],
+    [
+     47.4955113,
+     6.8046913
+    ],
+    [
+     47.4954804,
+     6.8047043
+    ],
+    [
+     47.495472,
+     6.8046608
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "room",
+   "rect": [
+    335,
+    700,
+    555,
+    875
+   ],
+   "node": "C1_TP1",
+   "poly": [
+    [
+     47.4954635,
+     6.8046173
+    ],
+    [
+     47.4954804,
+     6.8047043
+    ],
+    [
+     47.4954335,
+     6.8047242
+    ],
+    [
+     47.4954166,
+     6.8046372
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "void",
+   "rect": [
+    50,
+    750,
+    285,
+    875
+   ],
+   "label": "Void above the hall",
+   "poly": [
+    [
+     47.4954282,
+     6.8045103
+    ],
+    [
+     47.4954463,
+     6.8046032
+    ],
+    [
+     47.4954128,
+     6.8046174
+    ],
+    [
+     47.4953947,
+     6.8045245
+    ]
+   ]
+  },
+  {
+   "layer": "C1",
+   "kind": "corridor",
+   "rect": [
+    285,
+    750,
+    335,
+    875
+   ],
+   "poly": [
+    [
+     47.4954463,
+     6.8046032
+    ],
+    [
+     47.4954501,
+     6.804623
+    ],
+    [
+     47.4954166,
+     6.8046372
+    ],
+    [
+     47.4954128,
+     6.8046174
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "corridor",
+   "rect": [
+    250,
+    245,
+    1000,
+    290
+   ],
+   "poly": [
+    [
+     47.4955789,
+     6.8045321
+    ],
+    [
+     47.4956366,
+     6.8048287
+    ],
+    [
+     47.4956245,
+     6.8048338
+    ],
+    [
+     47.4955669,
+     6.8045372
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "corridor",
+   "rect": [
+    285,
+    290,
+    335,
+    750
+   ],
+   "poly": [
+    [
+     47.4955696,
+     6.8045511
+    ],
+    [
+     47.4955734,
+     6.8045708
+    ],
+    [
+     47.4954501,
+     6.804623
+    ],
+    [
+     47.4954463,
+     6.8046032
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "corridor",
+   "rect": [
+    0,
+    700,
+    335,
+    750
+   ],
+   "poly": [
+    [
+     47.4954378,
+     6.8044849
+    ],
+    [
+     47.4954635,
+     6.8046173
+    ],
+    [
+     47.4954501,
+     6.804623
+    ],
+    [
+     47.4954244,
+     6.8044905
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "stairs",
+   "rect": [
+    690,
+    75,
+    790,
+    245
+   ],
+   "node": "C2_STAIR_B",
+   "label": "Stairs",
+   "poly": [
+    [
+     47.4956583,
+     6.8046869
+    ],
+    [
+     47.495666,
+     6.8047264
+    ],
+    [
+     47.4956204,
+     6.8047457
+    ],
+    [
+     47.4956128,
+     6.8047061
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "stairs",
+   "rect": [
+    0,
+    595,
+    105,
+    700
+   ],
+   "node": "C2_STAIR_A",
+   "label": "Stairs",
+   "poly": [
+    [
+     47.4954659,
+     6.8044729
+    ],
+    [
+     47.495474,
+     6.8045145
+    ],
+    [
+     47.4954458,
+     6.8045264
+    ],
+    [
+     47.4954378,
+     6.8044849
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "wc",
+   "rect": [
+    105,
+    590,
+    200,
+    700
+   ],
+   "node": "C2_WC",
+   "label": "WC",
+   "poly": [
+    [
+     47.4954753,
+     6.8045139
+    ],
+    [
+     47.4954826,
+     6.8045515
+    ],
+    [
+     47.4954532,
+     6.8045639
+    ],
+    [
+     47.4954458,
+     6.8045264
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "elevator",
+   "rect": [
+    205,
+    595,
+    265,
+    645
+   ],
+   "node": "C2_ELEVATOR",
+   "label": "Lift",
+   "poly": [
+    [
+     47.4954817,
+     6.804554
+    ],
+    [
+     47.4954863,
+     6.8045777
+    ],
+    [
+     47.4954729,
+     6.8045834
+    ],
+    [
+     47.4954683,
+     6.8045597
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "service",
+   "rect": [
+    200,
+    645,
+    285,
+    700
+   ],
+   "poly": [
+    [
+     47.4954679,
+     6.8045577
+    ],
+    [
+     47.4954744,
+     6.8045913
+    ],
+    [
+     47.4954597,
+     6.8045976
+    ],
+    [
+     47.4954532,
+     6.8045639
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "private",
+   "rect": [
+    1000,
+    55,
+    1190,
+    290
+   ],
+   "node": "C2_STAIR_E",
+   "label": "Private",
+   "poly": [
+    [
+     47.4956875,
+     6.8048072
+    ],
+    [
+     47.4957021,
+     6.8048823
+    ],
+    [
+     47.4956391,
+     6.804909
+    ],
+    [
+     47.4956245,
+     6.8048338
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    40,
+    50,
+    250,
+    285
+   ],
+   "node": "C2_TD_LANGUES",
+   "poly": [
+    [
+     47.4956151,
+     6.804427
+    ],
+    [
+     47.4956312,
+     6.80451
+    ],
+    [
+     47.4955682,
+     6.8045367
+    ],
+    [
+     47.4955521,
+     6.8044536
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    250,
+    50,
+    330,
+    245
+   ],
+   "node": "C2_BUREAU_1",
+   "poly": [
+    [
+     47.4956312,
+     6.80451
+    ],
+    [
+     47.4956374,
+     6.8045416
+    ],
+    [
+     47.4955851,
+     6.8045638
+    ],
+    [
+     47.4955789,
+     6.8045321
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    330,
+    50,
+    405,
+    245
+   ],
+   "node": "C2_BUREAU_2",
+   "poly": [
+    [
+     47.4956374,
+     6.8045416
+    ],
+    [
+     47.4956431,
+     6.8045713
+    ],
+    [
+     47.4955909,
+     6.8045934
+    ],
+    [
+     47.4955851,
+     6.8045638
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    405,
+    50,
+    690,
+    245
+   ],
+   "node": "C2_TP6",
+   "poly": [
+    [
+     47.4956431,
+     6.8045713
+    ],
+    [
+     47.495665,
+     6.804684
+    ],
+    [
+     47.4956128,
+     6.8047061
+    ],
+    [
+     47.4955909,
+     6.8045934
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    790,
+    60,
+    1000,
+    245
+   ],
+   "node": "C2_TP7",
+   "poly": [
+    [
+     47.49567,
+     6.8047247
+    ],
+    [
+     47.4956862,
+     6.8048078
+    ],
+    [
+     47.4956366,
+     6.8048287
+    ],
+    [
+     47.4956204,
+     6.8047457
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    115,
+    290,
+    285,
+    395
+   ],
+   "node": "C2_BUREAU_3",
+   "poly": [
+    [
+     47.4955565,
+     6.8044838
+    ],
+    [
+     47.4955696,
+     6.8045511
+    ],
+    [
+     47.4955414,
+     6.804563
+    ],
+    [
+     47.4955284,
+     6.8044957
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    335,
+    290,
+    435,
+    395
+   ],
+   "node": "C2_VIDEO",
+   "poly": [
+    [
+     47.4955734,
+     6.8045708
+    ],
+    [
+     47.4955811,
+     6.8046104
+    ],
+    [
+     47.495553,
+     6.8046223
+    ],
+    [
+     47.4955453,
+     6.8045827
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    45,
+    395,
+    285,
+    590
+   ],
+   "node": "C2_TD2",
+   "poly": [
+    [
+     47.495523,
+     6.8044681
+    ],
+    [
+     47.4955414,
+     6.804563
+    ],
+    [
+     47.4954892,
+     6.8045851
+    ],
+    [
+     47.4954707,
+     6.8044902
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    335,
+    395,
+    565,
+    585
+   ],
+   "node": "C2_TP4",
+   "poly": [
+    [
+     47.4955453,
+     6.8045827
+    ],
+    [
+     47.495563,
+     6.8046737
+    ],
+    [
+     47.495512,
+     6.8046953
+    ],
+    [
+     47.4954943,
+     6.8046043
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    335,
+    585,
+    555,
+    700
+   ],
+   "node": "C2_REUNION",
+   "poly": [
+    [
+     47.4954943,
+     6.8046043
+    ],
+    [
+     47.4955113,
+     6.8046913
+    ],
+    [
+     47.4954804,
+     6.8047043
+    ],
+    [
+     47.4954635,
+     6.8046173
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    335,
+    700,
+    555,
+    875
+   ],
+   "node": "C2_TP3",
+   "poly": [
+    [
+     47.4954635,
+     6.8046173
+    ],
+    [
+     47.4954804,
+     6.8047043
+    ],
+    [
+     47.4954335,
+     6.8047242
+    ],
+    [
+     47.4954166,
+     6.8046372
+    ]
+   ]
+  },
+  {
+   "layer": "C2",
+   "kind": "room",
+   "rect": [
+    50,
+    750,
+    330,
+    870
+   ],
+   "node": "C2_TP5",
+   "poly": [
+    [
+     47.4954282,
+     6.8045103
+    ],
+    [
+     47.4954497,
+     6.804621
+    ],
+    [
+     47.4954176,
+     6.8046346
+    ],
+    [
+     47.4953961,
+     6.8045239
+    ]
+   ]
+  }
+ ]
+}

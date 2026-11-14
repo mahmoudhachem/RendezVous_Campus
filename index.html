@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rendez-vous Campus</title>
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<!--LEAFLET_CSS--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"><!--/LEAFLET_CSS-->
+<!--ML_CSS--><link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"><!--/ML_CSS-->
+<!--APP_CSS--><link rel="stylesheet" href="css/style.css"><!--/APP_CSS-->
+</head>
+<body>
+<div class="app">
+  <!-- full-screen map; the planner floats over it (left card on a computer, bottom sheet on a phone) -->
+  <main class="map-wrap">
+    <div id="map" aria-label="Campus map"></div>
+    <div id="map3d" aria-label="3D view of the campus" hidden></div>
+    <div class="map-style" id="map-style" role="group" aria-label="Map view">
+      <button type="button" data-view="plan" aria-pressed="true">Map</button><button type="button" data-view="street" aria-pressed="false">Street</button><button type="button" data-view="3d" aria-pressed="false">3D</button>
+    </div>
+    <nav id="tabs" class="floors" role="tablist" aria-label="Floor"></nav>
+    <div class="pick-hint" aria-live="polite">Tap the map near the place to set the position</div>
+  </main>
+  <aside class="sheet" id="sheet" data-state="half" aria-label="Plan a meeting">
+    <button type="button" class="sheet-handle" id="sheet-handle" aria-label="Show more"><span></span></button>
+    <header class="brand">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="9" cy="10" r="4"/><circle cx="23" cy="10" r="4"/><circle cx="16" cy="24" r="4"/><path d="M9 10L16 18 23 10M16 18v6"/></svg></span>
+      <div class="brand-text"><h1>Rendez-vous</h1><p>Campus des Portes du Jura · Montbéliard</p></div>
+      <button type="button" class="icon-btn theme-btn" id="theme-btn" aria-label="Change theme"></button>
+    </header>
+    <div id="panel-body" class="panel-body"><p class="hint">Loading the campus…</p></div>
+    <p class="credit">Map data © OpenStreetMap contributors. Indoor plans: Bât. C evacuation plans.</p>
+  </aside>
+</div>
+<!--DATA--><!--/DATA-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<!--APP_JS--><script src="js/config.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/algorithms.js"></script>
+<script src="js/app.js"></script><!--/APP_JS-->
+</body>
+</html>

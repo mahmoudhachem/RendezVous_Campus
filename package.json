@@ -1,0 +1,12 @@
+{
+  "name": "rendezvous-campus",
+  "version": "0.1.0",
+  "description": "Meeting point finder for the Montb\u00e9liard campus (Dijkstra + minimax)",
+  "private": true,
+  "scripts": {
+    "test": "node tests/test_algorithms.js",
+    "start": "npx --yes http-server -p 8080 -c-1 .",
+    "build": "node tools/build.js",
+    "verify": "node tests/verify_shortest_paths.js"
+  }
+}

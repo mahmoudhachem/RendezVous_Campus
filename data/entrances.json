@@ -1,0 +1,4 @@
+{
+  "_help": "Building doors checked on site. Key = place id from data/outdoor.json (e.g. OUT_IFMS), value = [lat, lng] of the door. Tap the map with 'Show the graph' on to read coordinates. Then run tools/osm_to_graph.py again.",
+  "_example_OUT_IFMS": [47.4946173, 6.8045089]
+}

@@ -1,0 +1,3 @@
+node_modules/
+# your Firebase config stays on your computer; GitHub Pages gets it from the FIREBASE_CONFIG secret
+js/config.js
