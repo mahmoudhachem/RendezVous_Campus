@@ -264,6 +264,8 @@
       } else {
         step.text = 'Go to ' + to.name + '.';
       }
+      if (matrix.mode === 'bike' && e.kind === 'entrance')   // the 30 s counted in edgeSeconds
+        step.text += to.layer === 'out' ? ' Get your bike (about 30 s).' : ' Park your bike first (about 30 s).';
       // merge consecutive steps on the same outdoor street
       if (last && e.via && last.via === e.via && !e.instr && last.kind === e.kind) {
         last.to = v; last.seconds += w; last.meters += e.length;

@@ -71,7 +71,12 @@
         ref.on('value', h);
         return () => ref.off('value', h);
       },
-      leave(code, seat) { return db.ref('groups/' + code + '/seats/' + seat).remove(); }
+      /** Free my seat; the last one out deletes the group. */
+      async leave(code, seat) {
+        await db.ref('groups/' + code + '/seats/' + seat).remove();
+        const left = (await db.ref('groups/' + code + '/seats').once('value')).val();
+        if (!left) await db.ref('groups/' + code).remove();
+      }
     };
   }
 
@@ -117,7 +122,12 @@
         listeners.add(l); l(code);
         return () => listeners.delete(l);
       },
-      async leave(code, seat) { const g = read(code); if (g && g.seats) { delete g.seats[seat]; save(code, g); } }
+      async leave(code, seat) {
+        const g = read(code); if (!g || !g.seats) return;
+        delete g.seats[seat];
+        if (Object.keys(g.seats).length) save(code, g);
+        else { try { localStorage.removeItem(key(code)); } catch (e) { /* fine */ } }
+      }
     };
   }
 

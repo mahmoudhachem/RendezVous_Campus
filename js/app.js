@@ -135,7 +135,7 @@
         const n = a.node != null ? N[idx(a.node)] : null;
         g.addLayer(L.polygon(a.poly, { interactive: false, weight: a.kind === 'corridor' ? 0 : 1.5,
           className: 'area area-' + a.kind + (n && n.meetable && a.kind === 'room' ? ' area-meetable' : '') }));
-        const c = a.poly.reduce((s, p) => [s[0] + p[0] / 4, s[1] + p[1] / 4], [0, 0]);
+        const c = a.poly.reduce((s, p) => [s[0] + p[0] / a.poly.length, s[1] + p[1] / a.poly.length], [0, 0]);
         const text = a.label || (n && (n.code || n.short || n.name.replace(/\s*\(.*\)$/, '').replace(/^Office.*/, 'Office')));
         if (text) g.addLayer(L.marker(c, { interactive: false, icon: L.divIcon({
           className: 'room-label' + (a.kind === 'room' ? '' : ' room-label-minor'), html: '<span>' + esc(text) + '</span>', iconSize: null }) }));
@@ -592,7 +592,7 @@
       const r = routes[i];
       const mine = state.group && state.group.idx === i;
       html += '<details class="route' + (mine ? ' mine' : '') + '" id="route-' + i + '" style="--c:var(' + p.colorVar + ')"' + (mine ? ' open' : '') + '>' +
-        '<summary aria-label="Directions for ' + p.key + (mine ? ' (you)' : '') + '"><span class="avatar">' + p.key + '</span>' + (mine ? '<span class="you-chip">You</span>' : '') + legsHtml(r, p.mode) +
+        '<summary aria-label="Directions for ' + p.key + (mine ? ' (you)' : '') + '"><span class="avatar">' + p.key + '</span>' + legsHtml(r, p.mode, mine) +
         '<span class="trip-time"><strong>' + clock(r.seconds) + '</strong><span>min</span></span>' +
         '<span class="from">from ' + esc(p.gps ? (p.gps.off ? 'off campus' : 'your location') : N[p.node].name) + '</span></summary>' +
         '<div class="route-body">' + actionsHtml(i, r) + approachHtml(r, p) + stepsHtml(r) + '<button type="button" class="link share" data-share="' + i + '">Copy link to this route</button></div></details>';
@@ -636,9 +636,10 @@
   /** "2:13" from seconds */
   function clock(sec) { if (!isFinite(sec)) return '—'; sec = Math.round(sec); return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0'); }
   /** Journey chips, Citymapper style: inside › stairs › outside, each with its time. */
-  function legsHtml(r, mode) {
-    if (!isFinite(r.seconds)) return '<span class="legs"><span class="leg">Not reachable</span></span>';
-    if (!r.steps.length && !r.approach) return '<span class="legs"><span class="leg">Already there</span></span>';
+  function legsHtml(r, mode, mine) {
+    const you = mine ? '<span class="you-chip">You</span>' : '';
+    if (!isFinite(r.seconds)) return '<span class="legs">' + you + '<span class="leg">Not reachable</span></span>';
+    if (!r.steps.length && !r.approach) return '<span class="legs">' + you + '<span class="leg">Already there</span></span>';
     const legs = [];
     for (const st of r.steps) {
       const type = st.kind === 'elevator' ? 'lift' : (st.kind === 'stairs' || st.kind === 'spiral' || st.kind === 'stairs_outdoor') ? 'stairs'
@@ -647,7 +648,7 @@
       if (last && last.type === type) last.sec += st.seconds; else legs.push({ type, sec: st.seconds });
     }
     if (r.approach) legs.unshift({ type: 'to campus', sec: r.approach.seconds, icon: ICON.locate });
-    return '<span class="legs">' + legs.map(l => '<span class="leg" title="' + l.type + '">' + (l.icon || (l.type === 'outside' ? ICON[mode] : LEG_ICON[l.type])) +
+    return '<span class="legs">' + you + legs.map(l => '<span class="leg" title="' + l.type + '">' + (l.icon || (l.type === 'outside' ? ICON[mode] : LEG_ICON[l.type])) +
       (l.sec >= 30 || legs.length === 1 ? clock(l.sec) : '') + '</span>').join('<span class="leg-sep" aria-hidden="true">›</span>') + '</span>';
   }
 
@@ -964,11 +965,13 @@
   function setPlace(i, node, gps) {
     state.people[i].node = node; state.people[i].gps = gps || null;
     const $g = document.getElementById('gps-' + i); if ($g) { $g.hidden = !gps; $g.innerHTML = gpsNote(i); }
-    if (state.group && state.group.idx === i) pushMine();
     const $in = document.getElementById('where-' + i);
     if ($in) { $in.value = personLabel(i); $in.removeAttribute('aria-invalid'); }
     const $e = document.getElementById('err-' + i); if ($e) $e.hidden = true;
     markStale();
+    // in a live group there is no Find button: sharing my place recomputes on every phone, mine included.
+    // (It must come after markStale, because the database can answer straight away.)
+    if (state.group && state.group.idx === i) pushMine();
   }
   $panel.addEventListener('change', ev => {
     const t = ev.target;
@@ -1037,18 +1040,11 @@
     document.querySelector('.pick-hint').innerHTML = 'Tap the map where person ' + state.people[i].key + ' is' +
       ('geolocation' in navigator ? ' <button type="button" class="locate">or use my location</button>' : '');
   }
-  // GPS: outdoors only, snapped to the nearest campus place
   document.querySelector('.pick-hint').addEventListener('click', ev => {
     if (!ev.target.closest('.locate') || state.picking == null) return;
-    const i = state.picking, $h = document.querySelector('.pick-hint');
-    $h.textContent = 'Finding your position…';
-    navigator.geolocation.getCurrentPosition(pos => {
-      const here = [pos.coords.latitude, pos.coords.longitude];
-      const node = nearestPlace(here, 'out');
-      if (map.distance(here, ll(N[node])) > 500) { $h.textContent = 'You seem to be away from the campus. Tap the map instead.'; return; }
-      setPlace(i, node); stopPicking(); showLayer('out', false); map.panTo(ll(N[node]));
-    }, () => { $h.textContent = 'Location is not available here. Tap the map instead.'; },
-    { enableHighAccuracy: true, timeout: 10000 });
+    const i = state.picking;           // same as the location button in the row (off campus included)
+    stopPicking();
+    locate(i, document.querySelector('[data-locate="' + i + '"]'));
   });
 
   function stopPicking() {
@@ -1058,8 +1054,8 @@
   }
 
   // Shared route links: #route--C2-TP6--OUT-C-WEST--walk  (ids with "_" written as "-")
-  const enc = id => id.replace(/_/g, '-');
-  const dec = s => s.replace(/-/g, '_');
+  const enc = id => encodeURIComponent(id);
+  const dec = s => { const id = decodeURIComponent(s); return idx(id) != null ? id : id.replace(/-/g, '_'); };   // old links wrote "_" as "-"
   function shareRoute(i, btn) {
     const p = state.people[i];
     const hash = '#route--' + enc(N[p.node].id) + '--' + enc(N[result.meet.node].id) + '--' + p.mode;
