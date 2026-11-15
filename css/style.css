@@ -410,3 +410,33 @@ code { font-size: 12px; background: var(--surface-2); padding: 1px 5px; border-r
   background: var(--surface-2); font-size: 13.5px; line-height: 1.4; }
 .approach svg { flex: none; width: 18px; height: 18px; margin-top: 1px; fill: none; stroke: var(--c); stroke-width: 2; }
 .approach svg .fill { fill: var(--c); }
+
+/* ------------------------------------------------------------------ how the meeting point is chosen */
+.goal { margin-top: 14px; display: grid; gap: 8px; }
+.seg { display: flex; padding: 3px; border-radius: 12px; background: color-mix(in srgb, var(--surface) 70%, transparent); }
+.seg button { flex: 1; min-height: 34px; border: 0; border-radius: 9px; background: none; color: var(--muted); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.goal-why { margin: 0; font-size: 12.5px; color: var(--muted); }
+.goal-why strong { color: var(--ink); }
+.how { display: flex; gap: 8px; flex-wrap: wrap; }
+.how .act-pill { min-height: 36px; font-size: 13px; padding: 0 12px; }
+.how .act-pill[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+
+/* overlay bar on the map: Dijkstra caption or fairness legend */
+.algo-bar {
+  position: absolute; z-index: 950; left: 50%; transform: translateX(-50%); bottom: calc(var(--sheet-offset) + 14px);
+  width: min(560px, calc(100% - 24px)); display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; align-items: center;
+  padding: 10px 10px 10px 14px; border-radius: 16px; background: var(--surface); color: var(--ink); box-shadow: var(--shadow);
+  font-size: 13.5px; line-height: 1.35; transition: bottom .25s ease;
+}
+@media (min-width: 761px) { .algo-bar { left: calc(50% + var(--sheet-w) / 2); width: min(560px, calc(100% - var(--sheet-w) - 48px)); } }
+.algo-bar .bar-text { grid-column: 1; }
+.algo-bar .bar-close { grid-column: 2; grid-row: 1; width: 32px; height: 32px; border: 0; border-radius: 50%; background: var(--surface-2); color: var(--ink); cursor: pointer; font-size: 14px; }
+.ramp { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ramp i { flex: 1; height: 10px; border-radius: 5px; background: linear-gradient(90deg, rgb(11,159,110), rgb(242,201,76), rgb(229,72,77)); }
+.wave-people { grid-column: 1 / -1; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.wp { padding: 3px 9px; border-radius: 999px; border: 2px solid var(--c); color: var(--c); font-weight: 800; font-size: 12px; font-variant-numeric: tabular-nums; }
+.wp[data-done] { background: var(--c); color: #fff; }
+.wave-people .act-pill { min-height: 30px; font-size: 12px; margin-left: auto; }
+.wave-canvas { position: absolute; inset: 0; z-index: 450; pointer-events: none; }
+@media (max-width: 760px) { .algo-bar { left: 12px; transform: none; width: auto; right: 64px; } }   /* keep clear of the zoom buttons */

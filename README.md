@@ -156,3 +156,15 @@ open three tabs, start in one, join from the other two.
 
 The deployed site still sends the key to every visitor's browser (it has to, to connect);
 this only keeps it out of the code. The data is protected by the Realtime Database rules.
+
+## Explaining the choice: goals, fairness map, Dijkstra wave
+
+- **Fairest / Least travel / Closest to me** (in the meeting card): minimax (default), min-sum, or the
+  shortest trip for one person. In a live group the goal is shared, so every phone keeps the same
+  result ("Closest to me" is hidden there, since it would differ per phone).
+- **Fairness map**: every path coloured by the goal value if the group met there (green = best,
+  red = twice the best time or more). It shows *why* the meeting point wins.
+- **Watch Dijkstra**: each person's Dijkstra drawn as a wave spreading at that person's speed
+  (stairs slower, no stairs in a wheelchair, bike outside only). A place is reached at exactly its
+  shortest time, so with the fair goal the meeting point is **the first meeting place that every
+  wave has reached**, which is the definition of minimax. Switch floors to watch it inside.

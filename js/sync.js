@@ -66,11 +66,12 @@
       },
       write(code, seat, data) { return db.ref('groups/' + code + '/seats/' + seat).update(Object.assign({}, data, { by: CLIENT, online: true, at: Date.now() })); },
       subscribe(code, cb) {
-        const ref = db.ref('groups/' + code + '/seats');
-        const h = snap => cb(snap.val() || {});
+        const ref = db.ref('groups/' + code);
+        const h = snap => { const g = snap.val() || {}; cb(g.seats || {}, { goal: g.goal || null }); };
         ref.on('value', h);
         return () => ref.off('value', h);
       },
+      setGoal(code, goal) { return db.ref('groups/' + code + '/goal').set(goal); },
       /** Free my seat; the last one out deletes the group. */
       async leave(code, seat) {
         await db.ref('groups/' + code + '/seats/' + seat).remove();
@@ -118,10 +119,11 @@
         save(code, g);
       },
       subscribe(code, cb) {
-        const l = c => { if (c === code) { const g = read(code); cb((g && g.seats) || {}); } };
+        const l = c => { if (c === code) { const g = read(code); cb((g && g.seats) || {}, { goal: (g && g.goal) || null }); } };
         listeners.add(l); l(code);
         return () => listeners.delete(l);
       },
+      async setGoal(code, goal) { const g = read(code); if (g) { g.goal = goal; save(code, g); } },
       async leave(code, seat) {
         const g = read(code); if (!g || !g.seats) return;
         delete g.seats[seat];

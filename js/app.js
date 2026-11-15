@@ -49,6 +49,8 @@
     picking: null,      // index of the person whose position is being tapped
     chosen: null,       // meeting point picked by hand from the table (null = best)
     showGraph: false,
+    goal: 'fair',       // how the meeting point is chosen: fair (minimax) | total (min-sum) | me (closest to me)
+    heat: false,        // fairness map shown
     single: null        // { from, to, mode } when opened from a shared route link
   };
 
@@ -346,7 +348,10 @@
   // ------------------------------------------------------------------ compute
   function compute() {
     const people = state.people.map(p => ({ node: p.node, matrix: matrices[p.mode], extra: approachSeconds(p) }));
-    const ranked = RDV.meetingPoint(people, candidates);
+    const ranked = RDV.meetingPoint(people, candidates);       // minimax order: max, then sum
+    const me = myIndex(), goal = state.goal;
+    if (goal === 'total') ranked.sort((x, y) => (x.sum - y.sum) || (x.max - y.max));
+    else if (goal === 'me') ranked.sort((x, y) => (x.times[me] - y.times[me]) || (x.max - y.max));
     const best = ranked[0];
     const meet = state.chosen != null ? ranked.find(r => r.node === state.chosen) || best : best;
     const routes = state.people.map((p, i) => {
@@ -358,6 +363,7 @@
 
   let result = null;
   function update() {
+    stopWave();
     if (state.single) {
       const { from, to, mode } = state.single;
       result = { single: true, meet: { node: to }, routes: [RDV.itinerary(graph, matrices[mode], from, to)] };
@@ -367,6 +373,7 @@
       savePeople();
     }
     renderPanel(); renderTabs(); drawRoutes();
+    if (state.heat && !legendShown()) showLegend();
   }
 
   // ------------------------------------------------------------------ drawing
@@ -381,7 +388,7 @@
 
   function drawRoutes() {
     if (view === '3d') refresh3D();
-    if (state.stale) return drawPending();
+    if (state.stale) { heatGroup.clearLayers(); return drawPending(); }
     routeGroup.clearLayers(); markerGroup.clearLayers();
     if (!result) return;
     const casing = css('--panel');
@@ -425,6 +432,7 @@
       if (visibleHere(start)) markerGroup.addLayer(personPin(start, result.single ? 'You' : state.people[pi].key, color));
     });
     gpsLinks();
+    drawHeat();
     // people whose route is empty (already at the meeting point / unreachable) still get a pin
     if (!result.single) state.people.forEach((p, i) => {
       if (result.routes[i].path.length || !visibleHere(N[p.node])) return;
@@ -585,6 +593,7 @@
       '<p class="where"><button type="button" class="chip" data-layer="' + m.layer + '">' + ICON_LAYER + esc(layerName(m.layer)) + '</button>' +
       '<span class="big-time">all there in <strong>' + clock(meet.max) + '</strong> min</span></p>' +
       (custom ? '<button type="button" class="link reset" data-reset>Use the best place instead (' + RDV.formatTime(best.max) + ')</button>' : '') +
+      goalHtml(meet) +
       '<p class="stale-note">Changes made. Press <strong>Find where to meet</strong> to update.</p></section>';
 
     html += '<section class="routes" aria-label="Trips">';
@@ -1014,6 +1023,9 @@
     if (b.dataset.play != null) return runRoute(+b.dataset.play, 'play');
     if (b.dataset.speak != null) return runRoute(+b.dataset.speak, 'speak');
     if (b.dataset.group) return groupAction(b.dataset.group, b);
+    if (b.dataset.goal) return setGoal(b.dataset.goal);
+    if (b.hasAttribute('data-wave')) return startWave();
+    if (b.hasAttribute('data-heat')) return toggleHeat();
     if (b.dataset.count) { setCount(state.people.length + +b.dataset.count); renderForm(); markStale(); return; }
     if (b.dataset.locate) return locate(+b.dataset.locate, b);
     if (b.dataset.mode) {
@@ -1195,6 +1207,204 @@
   new ResizeObserver(syncSheetOffset).observe($sheet);
   PHONE.addEventListener('change', () => { syncSheetOffset(); map.invalidateSize(); });
 
+  // ------------------------------------------------------------------ how the meeting point is chosen
+  // fair  = minimax: the last person arrives as early as possible (the default, and what the professor asked)
+  // total = min-sum: least travel time for the group, even if one person travels much longer
+  // me    = closest to me (not offered in a live group: every phone would get a different answer)
+  const myIndex = () => state.group ? state.group.idx : 0;
+  const GOALS = {
+    fair: { label: 'Fairest', explain: 'the last person arrives as early as possible' },
+    total: { label: 'Least travel', explain: 'the smallest total travel time for the group' },
+    me: { label: 'Closest to me', explain: 'the shortest trip for you' }
+  };
+  const goalValue = (r, goal) => goal === 'total' ? r.sum : goal === 'me' ? r.times[myIndex()] : r.max;
+  function goalHtml(meet) {
+    const goals = state.group ? ['fair', 'total'] : ['fair', 'total', 'me'];
+    const label = k => k === 'me' && !state.group ? 'Closest to ' + state.people[0].key : GOALS[k].label;
+    return '<div class="goal"><div class="seg" role="radiogroup" aria-label="Choose the meeting point by">' +
+      goals.map(k => '<button type="button" role="radio" data-goal="' + k + '" aria-checked="' + (state.goal === k) + '">' + label(k) + '</button>').join('') + '</div>' +
+      '<p class="goal-why">' + (state.goal === 'me' && !state.group ? 'The shortest trip for ' + state.people[0].key : GOALS[state.goal].explain[0].toUpperCase() + GOALS[state.goal].explain.slice(1)) +
+      ' · total travel <strong>' + clock(meet.sum) + '</strong> min</p>' +
+      '<div class="how"><button type="button" class="act-pill" data-wave>' + ICON_WAVE + 'Watch Dijkstra</button>' +
+      '<button type="button" class="act-pill" data-heat aria-pressed="' + state.heat + '">' + ICON_HEAT + 'Fairness map</button></div></div>';
+  }
+  function setGoal(goal) {
+    if (!GOALS[goal] || goal === state.goal) return;
+    state.goal = goal; state.chosen = null;
+    if (state.group) state.group.backend.setGoal(state.group.code, goal);
+    update();
+  }
+  const ICON_WAVE = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="17" r="2"/><path d="M6 11.5a5.5 5.5 0 0 1 5.5 5.5M6 6.5A10.5 10.5 0 0 1 16.5 17"/><path d="M19 4l.01 0"/></svg>';
+  const ICON_HEAT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l5-6 4 3 7-9"/><path d="M4 6h3M4 10h2"/></svg>';
+
+  // ------------------------------------------------------------------ fairness map
+  // Every place on the map coloured by the chosen goal if the group met THERE: green = good, red = someone waits.
+  // It shows why the meeting point wins, not only where it is.
+  map.createPane('heat').style.zIndex = 390;                 // under the routes (400), over the base map
+  const heatGroup = L.layerGroup().addTo(map);
+  const heatRenderer = L.canvas({ pane: 'heat', padding: 0.3 });
+  const RAMP = [[11, 159, 110], [242, 201, 76], [229, 72, 77]];   // green → yellow → red
+  function rampColor(f) {
+    f = Math.max(0, Math.min(1, f));
+    const k = f < 0.5 ? 0 : 1, g = f < 0.5 ? f * 2 : (f - 0.5) * 2;
+    return 'rgb(' + RAMP[k].map((c, j) => Math.round(c + (RAMP[k + 1][j] - c) * g)).join(',') + ')';
+  }
+  /** Goal value at every node: what it would cost if the group met there. */
+  function nodeScores() {
+    const ps = state.people.map(p => ({ D: matrices[p.mode].D[p.node], extra: approachSeconds(p) }));
+    return N.map((n, v) => {
+      const times = ps.map(p => p.extra + p.D[v]);
+      return goalValue({ times, max: Math.max(...times), sum: times.reduce((s, t) => s + t, 0) }, state.goal);
+    });
+  }
+  function heatRange(sc) {
+    const fin = sc.filter(isFinite).sort((a, b) => a - b);
+    const lo = fin[0], far = fin[Math.floor(fin.length * 0.95)] || fin[fin.length - 1];
+    return [lo, Math.min(far, Math.max(lo * 2, lo + 60))];   // red = twice the best time: the contrast stays around the meeting point
+  }
+  function drawHeat() {
+    heatGroup.clearLayers();
+    if (!state.heat || !result || result.single || state.stale) return;
+    const sc = nodeScores(), [lo, hi] = heatRange(sc), span = Math.max(1, hi - lo);
+    for (const e of graph.edges) {
+      if (N[e.a].layer !== state.layer || N[e.b].layer !== state.layer) continue;
+      const s = (sc[e.a] + sc[e.b]) / 2;
+      if (!isFinite(s)) continue;
+      heatGroup.addLayer(L.polyline(segment(e.a, e.b), { renderer: heatRenderer, color: rampColor((s - lo) / span), weight: 7, opacity: 0.9,
+        lineCap: 'round', interactive: false }));
+    }
+    if (legendShown()) showLegend(sc);
+  }
+  const $bar = document.getElementById('algo-bar');
+  const legendShown = () => !$bar.hidden && $bar.dataset.mode === 'heat';
+  function showLegend(sc) {
+    if (!state.heat || !result || result.single) return;
+    const [lo, hi] = heatRange(sc || nodeScores());
+    const what = state.goal === 'total' ? 'Total travel time of the group' : state.goal === 'me' ? 'Your travel time' : 'When the last person arrives';
+    $bar.dataset.mode = 'heat'; $bar.hidden = false;
+    $bar.innerHTML = '<div class="bar-text"><strong>' + what + '</strong> if you met there</div>' +
+      '<div class="ramp"><span>' + clock(lo) + '</span><i></i><span>' + clock(hi) + '+</span></div>' +
+      '<button type="button" class="bar-close" data-bar-close aria-label="Hide the fairness map">✕</button>';
+  }
+  function toggleHeat(on) {
+    stopWave();
+    state.heat = on == null ? !state.heat : on;
+    document.querySelectorAll('[data-heat]').forEach(b => b.setAttribute('aria-pressed', String(state.heat)));
+    if (state.heat) { showLegend(); if (view === '3d') setView('plan'); if (PHONE.matches) setSheet('peek'); }
+    else if ($bar.dataset.mode === 'heat') $bar.hidden = true;
+    drawHeat();
+  }
+  $bar.addEventListener('click', ev => {
+    const b = ev.target.closest('button'); if (!b) return;
+    if (b.hasAttribute('data-bar-close')) { if ($bar.dataset.mode === 'heat') toggleHeat(false); else stopWave(); }
+    if (b.hasAttribute('data-replay')) startWave();
+  });
+
+  // ------------------------------------------------------------------ watch Dijkstra
+  // Each person's Dijkstra spreads like a wave at their own speed (slower on stairs, no stairs in a wheelchair).
+  // A place is "reached" by a person at exactly the shortest time Dijkstra computed for it. With the fair
+  // goal, the meeting point is the FIRST meeting place that every wave has reached: that is minimax.
+  let wave = null;
+  function startWave() {
+    if (!result || result.single || state.stale || !isFinite(result.meet.max)) return;
+    stopWave(); if (playing) stopPlayback();
+    if (state.heat) toggleHeat(false);
+    if (view === '3d') setView('plan');
+    if (PHONE.matches) setSheet('peek');
+    showOverview();
+    const ps = state.people.map((p, i) => ({ key: p.key, color: personColor(i), mode: p.mode,
+      D: matrices[p.mode].D[p.node], extra: approachSeconds(p), arrive: result.meet.times[i] }));
+    const T = Math.max(...ps.map(p => p.arrive));
+    const el = document.createElement('canvas'); el.className = 'wave-canvas';
+    map.getContainer().appendChild(el);
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    wave = { ps, T, end: T * 1.12, el, dur: reduce ? 1 : 9000, t0: performance.now(), raf: 0, t: 0 };
+    $bar.dataset.mode = 'wave'; $bar.hidden = false;
+    $bar.innerHTML = '<div class="bar-text" id="wave-text"></div><div class="wave-people" id="wave-people"></div>' +
+      '<button type="button" class="bar-close" data-bar-close aria-label="Stop">✕</button>';
+    map.on('move zoom resize', drawWave);
+    tickWave();
+  }
+  function tickWave() {
+    if (!wave) return;
+    wave.t = Math.min(wave.end, (performance.now() - wave.t0) / wave.dur * wave.end);
+    drawWave();
+    if (wave.t < wave.end) wave.raf = requestAnimationFrame(tickWave);
+  }
+  function stopWave() {
+    if (!wave) return;
+    cancelAnimationFrame(wave.raf); map.off('move zoom resize', drawWave);
+    wave.el.remove(); wave = null;
+    if ($bar.dataset.mode === 'wave') $bar.hidden = true;
+  }
+  /** Points along a pixel polyline between fractions f0..f1 of its length. */
+  function subLine(pts, f0, f1) {
+    const len = [0];
+    for (let i = 1; i < pts.length; i++) len.push(len[i - 1] + Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y));
+    const L0 = f0 * len[len.length - 1], L1 = f1 * len[len.length - 1], out = [];
+    const at = L => { let i = 1; while (i < len.length - 1 && len[i] < L) i++;
+      const k = (L - len[i - 1]) / ((len[i] - len[i - 1]) || 1);
+      return { x: pts[i - 1].x + (pts[i].x - pts[i - 1].x) * k, y: pts[i - 1].y + (pts[i].y - pts[i - 1].y) * k }; };
+    out.push(at(L0));
+    for (let i = 1; i < len.length - 1; i++) if (len[i] > L0 && len[i] < L1) out.push(pts[i]);
+    out.push(at(L1));
+    return out;
+  }
+  function drawWave() {
+    if (!wave) return;
+    const { el, ps, t, T } = wave, size = map.getSize(), dpr = window.devicePixelRatio || 1;
+    if (el.width !== size.x * dpr || el.height !== size.y * dpr) { el.width = size.x * dpr; el.height = size.y * dpr; el.style.width = size.x + 'px'; el.style.height = size.y + 'px'; }
+    const c = el.getContext('2d');
+    c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, size.x, size.y);
+    c.lineCap = 'round'; c.lineJoin = 'round';
+    const px = ll => map.latLngToContainerPoint(ll);
+    const edges = graph.edges.filter(e => N[e.a].layer === state.layer && N[e.b].layer === state.layer);
+    const geo = edges.map(e => segment(e.a, e.b).map(px));
+    ps.forEach((p, k) => {
+      const fronts = [];
+      c.strokeStyle = p.color; c.globalAlpha = 0.85; c.lineWidth = Math.max(2.5, 8 - 2 * k);
+      c.beginPath();
+      edges.forEach((e, j) => {
+        const w = RDV.edgeSeconds(e, p.mode, graph.settings);
+        if (!isFinite(w) || w <= 0) return;
+        const fa = Math.max(0, Math.min(1, (t - p.extra - p.D[e.a]) / w));
+        const fb = Math.max(0, Math.min(1, (t - p.extra - p.D[e.b]) / w));
+        if (fa + fb >= 1) { const pts = geo[j]; c.moveTo(pts[0].x, pts[0].y); pts.slice(1).forEach(q => c.lineTo(q.x, q.y)); return; }
+        for (const [f0, f1, front] of [[0, fa, fa], [1 - fb, 1, 1 - fb]]) {
+          if (f1 - f0 <= 0) continue;
+          const pts = subLine(geo[j], f0, f1);
+          c.moveTo(pts[0].x, pts[0].y); pts.slice(1).forEach(q => c.lineTo(q.x, q.y));
+          fronts.push(front === fa ? pts[pts.length - 1] : pts[0]);
+        }
+      });
+      c.stroke();
+      c.globalAlpha = 1; c.fillStyle = p.color;          // the wave front
+      for (const f of fronts) { c.beginPath(); c.arc(f.x, f.y, 3.5, 0, 7); c.fill(); }
+    });
+    // the meeting point lights up when the last wave reaches it
+    const m = N[result.meet.node];
+    if (m.layer === state.layer || state.layer === 'out') {
+      const q = px(ll(m)), done = t >= T;
+      c.globalAlpha = 1; c.lineWidth = 3; c.strokeStyle = done ? css('--accent') : css('--muted');
+      c.beginPath(); c.arc(q.x, q.y, done ? 14 + 6 * Math.sin(performance.now() / 180) : 11, 0, 7); c.stroke();
+      if (done && wave.t >= wave.end) requestAnimationFrame(() => wave && wave.t >= wave.end && drawWave());   // keep pulsing
+    }
+    waveText();
+  }
+  function waveText() {
+    const { ps, t, T } = wave, m = N[result.meet.node];
+    const $t = document.getElementById('wave-text'), $p = document.getElementById('wave-people');
+    if (!$t) return;
+    const done = t >= T;
+    const msg = !done ? 'Dijkstra · <strong>' + clock(t) + '</strong> · each wave spreads at its own speed'
+      : state.goal === 'fair' ? '<strong>' + esc(m.name) + '</strong> is the first meeting place every wave reaches: <strong>' + clock(T) + '</strong>'
+      : 'Everyone has reached <strong>' + esc(m.name) + '</strong> at <strong>' + clock(T) + '</strong>';
+    if ($t.innerHTML !== msg) $t.innerHTML = msg;
+    const chips = ps.map(p => '<span class="wp" style="--c:' + p.color + '"' + (t >= p.arrive ? ' data-done' : '') + '>' + p.key +
+      (t >= p.arrive ? ' ✓ ' + clock(p.arrive) : '') + '</span>').join('') + (done ? '<button type="button" class="act-pill" data-replay>Replay</button>' : '');
+    if ($p.innerHTML !== chips) $p.innerHTML = chips;
+  }
+
   // ------------------------------------------------------------------ my location (GPS)
   // GPS cannot tell the floor, so it snaps to the nearest campus path. Off campus, the person starts at the
   // nearest point of the campus and the time to get there is estimated (straight line × 1.3, at their speed)
@@ -1334,7 +1544,7 @@
     state.group = { code, seat, idx, backend, seats: {}, shownOnce: false };
     if (location.hash !== '#join-' + code) history.replaceState(null, '', location.pathname + location.search + '#join-' + code);
     renderForm();
-    state.group.unsub = backend.subscribe(code, seats => onSeats(seats));
+    state.group.unsub = backend.subscribe(code, (seats, meta) => onSeats(seats, meta));
     pushMine();
   }
   async function leaveGroup(silent) {
@@ -1350,9 +1560,10 @@
     g.backend.write(g.code, g.seat, seatData(me));
   }
   /** Seats changed (someone joined, moved or left): update their rows and recompute. */
-  function onSeats(seats) {
+  function onSeats(seats, meta) {
     const g = state.group; if (!g) return;
     g.seats = seats || {};
+    if (meta && meta.goal && meta.goal !== state.goal && meta.goal !== 'me') { state.goal = meta.goal; state.chosen = null; }
     seatKeys().forEach((k, i) => {
       const s = g.seats[k];
       if (i !== g.idx && s && idx(s.node) != null) {
